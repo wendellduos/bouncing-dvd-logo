@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: #242424;
+}
+.bnc-frame {
+    position: relative;
+    width: 640px;
+    max-width: calc(100% - 4px);
+    height: 480px;
+    max-height: calc(100% - 4px);
+    border: solid 2px #cccccc;
+}
+.bnc-frame-icon {
+    position: absolute;
+    width: 100px;
+    opacity: 0;
+    animation: fade-in .5s forwards;
+    animation-delay: 1s;
+}
+/*Animation hides image while position is defined in the script*/
+@keyframes fade-in {
+    from{opacity: 0}
+    to{opacity: 1}
+}
