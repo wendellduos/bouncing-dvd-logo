@@ -15,6 +15,7 @@ let directionX = posX >= maxX ? 'toRight' : 'toLeft';
 let directionY = posY >= maxY ? 'toBottom' : 'toTop';
 
 let speed = 4;
+let updtFrequency = 50;
 
 //defines interval to verify and update icon position
 setInterval(() => {
@@ -43,7 +44,7 @@ setInterval(() => {
     } else if(posY <= 0) {
         directionY = 'toBottom';
     }
-} , 50);
+} , updtFrequency);
 
 //coordinate generators
 function generateY() {
