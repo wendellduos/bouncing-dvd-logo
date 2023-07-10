@@ -1,7 +1,8 @@
 
 # Bouncing Logo
 
-This project is a basic recreation of the classic DVD Screen Saver, commonly referred to as "DVD Bouncing Logo".
+This project is a basic recreation of the classic DVD Screen Saver, commonly referred to as "DVD Bouncing Logo".  
+<a href="https://codepen.io/wendellduos/pen/KKrymge" target="_blank">See it live on Codepen </a>.
 
 ## Expanding on the idea
 
@@ -20,6 +21,11 @@ You could easily increase functionalities, for example:
             //color changes to white
             img.style.fill = 'white';
         }
+- Make it happen in full screen by simply setting **width** and **height** to **100%**. Also, experiment with different speeds and update frequencies, as in larger screen sizes it might take too long for the icon to hit the walls).
+  
+        let speed = 7;
+        let updtFrequency = 25;
+
 
 ## DISCLAIMER
 
