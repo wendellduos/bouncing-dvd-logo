@@ -1,57 +1,63 @@
 //elements
-const frame = document.getElementById('frame');
-const img = document.getElementById('icon');
+const frame = document.getElementById("frame");
+const logo = document.getElementById("dvd-logo");
 
-//sets boundries
-let maxX = frame.clientWidth - img.clientWidth ;
-let maxY = frame.clientHeight - img.clientHeight;
+//params
+let speed = frame.clientWidth / 165;
+let updtFrequency = 33.3;
 
-//generates random initial position
-let posX = generateX();
-let posY = generateY();
+const axis = {
+  x: {
+    leftWall: 0,
+    rightWall: frame.clientWidth - logo.clientWidth,
+    directions: ["right", "left"],
+  },
+  y: {
+    topWall: 0,
+    bottomWall: frame.clientHeight - logo.clientHeight,
+    directions: ["bottom", "top"],
+  },
+};
 
-//sets initial direction based on posX and posY values
-let directionX = posX >= maxX ? 'toRight' : 'toLeft'; 
-let directionY = posY >= maxY ? 'toBottom' : 'toTop';
+//initiate current positions at random
+let posX = (Math.random() * axis.x.rightWall).toFixed();
+let posY = (Math.random() * axis.y.bottomWall).toFixed();
 
-let speed = 4;
-let updtFrequency = 50;
+//set initial direction at random
+let directionX = axis.x.directions[(Math.random() * 1).toFixed()];
+let directionY = axis.y.directions[(Math.random() * 1).toFixed()];
 
-//defines interval to verify and update icon position
+//defines interval to verify and update logo position
 setInterval(() => {
-    if(directionX == 'toRight') {
-        img.style.left = `${posX}px`; 
-        posX += speed;
-    } else {         
-        img.style.left = `${posX}px`; 
-        posX -= speed;
-    }    
-    if(directionY == 'toBottom') {
-        img.style.top = `${posY}px`; 
-        posY += speed;
-    } else {         
-        img.style.top = `${posY}px`; 
-        posY -= speed;
-    }
-    
-    if(posX >= maxX) {
-        directionX = 'toLeft';        
-    } else if(posX <= 0) {
-        directionX = 'toRight';
-    }      
-    if(posY >= maxY) {
-        directionY = 'toTop';        
-    } else if(posY <= 0) {
-        directionY = 'toBottom';
-    }
-} , updtFrequency);
+  if (directionX === "right") {
+    logo.style.left = `${posX}px`;
+    posX += speed;
+  } else {
+    logo.style.left = `${posX}px`;
+    posX -= speed;
+  }
 
-//coordinate generators
-function generateY() {
-    let num = (Math.random() * maxY).toFixed();
-    return num;
-}
-function generateX() {
-    let num = (Math.random() * maxX).toFixed();
-    return num;
-}
+  if (directionY === "bottom") {
+    logo.style.top = `${posY}px`;
+    posY += speed;
+  } else {
+    logo.style.top = `${posY}px`;
+    posY -= speed;
+  }
+
+  if (posX >= axis.x.rightWall) {
+    posX = axis.x.rightWall;
+    directionX = "left";
+  } else if (posX <= axis.x.leftWall) {
+    posX = axis.x.leftWall;
+    directionX = "right";
+  }
+
+  if (posY >= axis.y.bottomWall) {
+    posY = axis.y.bottomWall;
+    directionY = "top";
+  } else if (posY <= axis.y.topWall) {
+    posY = axis.y.topWall;
+    directionY = "bottom";
+  }
+}, updtFrequency);
